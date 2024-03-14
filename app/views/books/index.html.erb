@@ -9,8 +9,22 @@
   </thead>
   <tbody>
     <tr>
-      <td></td>
-      <td></td>
+      <%= @books.each do |book| %>
+      <td><%= book.title %></td>
+      <td><%= book.body %></td>
+      <td>link_to "Show",book_path</td>
+      <td>link_to "Edit",edit_book_path</td>
+      <td>link_to "Destroy"</td>
+      <% end %>
     </tr>
   </tbody>
 </table>
+
+<h3>New book</h3>
+<%= form_with model: @book, url: '/books', method: :post do |f| %>
+<p>Title</p>
+<%= f.text_field :title %><br>
+<p>Body</p>
+<%= f.text_area :body %>
+<%= f.submit 'Create Book' %>
+<% end %>
